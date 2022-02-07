@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<title>ログアウト</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="header dorder-bottom">
+            <h1 class="h2">ログアウト</h1>
+        </div>
+        <form method="post" th:action="@{/logout}" name="logoutForm"></form>
+        <script>
+            window.onload = function() {
+                document.logoutForm.submit();
+            };
+        </script>
+    </div>
+</body>
+</html>

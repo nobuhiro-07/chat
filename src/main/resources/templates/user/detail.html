@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー設定</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="header dorder-bottom">
+            <h1 class="h2">ユーザー詳細</h1>
+        </div>
+        <form id="user-detail-form" method="post" th:action="@{/user/detail}"
+            class="form-signup" th:object="${userDetailForm}">
+            <input type="hidden" th:field="*{userId}" />
+            <table class="table table-striped table-border-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <th>名前変更</th>
+                        <td><input type="text" class="form-control"
+                            th:field="*{userName}" /></td>
+                    </tr>
+
+                    <tr>
+                        <th>パスワード変更</th>
+                        <td><input type="text" class="form-control"
+                            th:field="*{password}" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- ボタンエリア -->
+            <div class="text-center">
+                <!-- 更新ボタン -->
+                <button class="btn btn-primary" type="submit" name="update">
+                    保存</button>
+                <br>
+                <br>
+                <!-- 削除ボタン -->
+                <button class="btn btn-danger" type="submit" name="delete">
+                    退会</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

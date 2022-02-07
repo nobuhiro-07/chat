@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:layout:decorate="~{layout/layout}">
+<head>
+</head>
+<body>
+    <div layout:fragment="menu" class="bg^light">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation">
+                <a class="nav-link" th:href="@{/user/detail}">ユーザー設定</a>
+            </li>
+            <li role="presentation">
+                <a class="nav-link" th:href="@{/chatGroup/new}">グループ作成</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

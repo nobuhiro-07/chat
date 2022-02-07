@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>チャットスペース</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1 class="text-center">
+            <span th:text="${chatGroupName}"></span>
+        </h1>
+        <div class="overflow-auto" style="height: 450px;">
+            <div class="d-flex justify-content-between" >
+                <div class="card w-75">
+                    <div id="chat-space">
+                        <div class="card-body">
+                            <div th:each="chat:${chatList}" th:object="${chat}">
+                                <div>
+                                    <span th:text="*{createDate}"></span>
+                                    <span th:if="*{createUser.isDelete}" >削除済みユーザー</span>
+                                    <span th:if="!*{createUser.isDelete}" th:text="*{createUser.userName}" ></span>
+
+                                </div>
+                                <div th:text="*{content}"></div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="min-width: 20%;">
+                  <div class="card-body w-100" th:each="user:${userList}" th:object="${user}">
+                    <div class="bg-light card-text" th:each="user:${userList}" th:object="${user}">
+                      <span th:text="*{userName}" ></span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="card w-100">
+            <form method="post" th:action="@{/chatSpace/post}"
+                th:object="${chatForm}">
+                <div class="card-body d-flex justify-content-center">
+                    <div class="w-100">
+                        <textarea rows="2" class="w-100" th:field="*{content}"
+                           th:errorclass="is-invalid"></textarea>
+                        <div class="invalid-feedback" th:errors="*{content}"></div>
+                    </div>
+                    <div  class="p-3">
+                        <input type="hidden" th:field="*{chatGroupId}">
+                        <input type="submit" class="btn btn-primary" value="送信">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
